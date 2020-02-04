@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public bool isJumping = false; // this doesn't need to be public
     private Rigidbody2D _rigidBody2D;
 
+    public int health;
+
     private void Awake()
     {
         _rigidBody2D = GetComponent<Rigidbody2D>();
