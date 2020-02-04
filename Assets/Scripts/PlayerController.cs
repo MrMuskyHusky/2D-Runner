@@ -4,30 +4,28 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float jumpHeight = 300f;
-    private Rigidbody2D rigidBody;
+    public float jumpHeight;
+    public bool isJumping = false; // this doesn't need to be public
+    private Rigidbody2D _rigidBody2D;
 
-    //Variables for grounding system.
-    public bool isGrounded;
-    public Transform grounder;
-    public LayerMask ground;
-
-    // Use this for initialization
-    void Start()
+    private void Awake()
     {
-        rigidBody = GetComponent<Rigidbody2D>();
+        _rigidBody2D = GetComponent<Rigidbody2D>();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && !isJumping) // both conditions can be in the same branch
+        {
+            _rigidBody2D.AddForce(Vector2.up * jumpHeight); // you need a reference to the RigidBody2D component
+            isJumping = true;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        isGrounded = Physics2D.OverlapCircle(grounder.transform.position, ground);
-
-        //Was the key 'W' pushed down?
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
+        if (col.gameObject.tag == "Ground") // GameObject is a type, gameObject is the property
         {
-            //Add force to the rigid body, none to the x-axis and jumpHeight to the y-axis.
-            rigidBody.AddForce(new Vector2(0, jumpHeight));
+            isJumping = false;
         }
     }
 }
