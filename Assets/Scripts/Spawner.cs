@@ -4,37 +4,44 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject obstacle;
+    public GameObject prefab1, prefab2, prefab3, prefab4, prefab5;
 
-    private float timeBtwSpawn;
-    public float startTimeBtwSpawn;
-    public float decreaseTime;
-    public float minTime = 0.65f;
+    public float nextSpawn;
+    public float spawnRate = 2f;
+    public int whatToSpawn;
 
     private void Start()
     {
-        SpawnRate();
+        
     }
 
     void Update()
     {
-        if(timeBtwSpawn <= 0)
+        if(Time.time > nextSpawn)
         {
-            Instantiate(obstacle, transform.position, Quaternion.identity);
-            timeBtwSpawn = startTimeBtwSpawn;
-            if(startTimeBtwSpawn > minTime)
-            {
-                startTimeBtwSpawn -= decreaseTime;
-            }
-        }
-        else
-        {
-            timeBtwSpawn -= Time.deltaTime;
-        }
-    }
+            whatToSpawn = Random.Range(1, 6);
+            Debug.Log(whatToSpawn);
 
-    void SpawnRate()
-    {
-        float startTimeBtwSpawn = Random.Range(1f, 4f);
+            switch (whatToSpawn)
+            {
+                case 1:
+                    Instantiate(prefab1, transform.position, Quaternion.identity);
+                    break;
+                case 2:
+                    Instantiate(prefab2, transform.position, Quaternion.identity);
+                    break;
+                case 3:
+                    Instantiate(prefab3, transform.position, Quaternion.identity);
+                    break;
+                case 4:
+                    Instantiate(prefab4, transform.position, Quaternion.identity);
+                    break;
+                case 5:
+                    Instantiate(prefab5, transform.position, Quaternion.identity);
+                    break;
+            }
+            nextSpawn = Time.time + spawnRate;
+            spawnRate = Random.Range(1, 4);
+        }
     }
 }
