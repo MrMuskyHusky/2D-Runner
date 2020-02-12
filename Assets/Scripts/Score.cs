@@ -12,7 +12,7 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scoreText.text = "Score: " + score;
+        scoreText.text = "Distance: " + score;
         pointIncreasePerSecond = 1f;
         InvokeRepeating("TimerIncreaseTest", 1, 1);
     }
@@ -21,7 +21,7 @@ public class Score : MonoBehaviour
     void Update()
     {
         score += pointIncreasePerSecond * Time.deltaTime;
-        scoreText.text = "Score: " + Mathf.Round(score);
+        scoreText.text = "Distance: " + Mathf.Round(score);
     }
     void TimerIncreaseTest()
     {

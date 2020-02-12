@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class OnTriggerEvent : MonoBehaviour
 {
     public UnityEvent onEnter;
-    public string hitTag = "Player";
+    public string hitTag = "GymEquipment";
 
     // Make the game run an event when an object/player/enemy enters the trigger zone.
     private void OnTriggerEnter2D(Collider2D col)

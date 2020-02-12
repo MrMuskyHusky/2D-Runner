@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
         // Resets the current level of the scene when you hit a trigger or a ui button is pressed.
         Scene activeScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(activeScene.buildIndex);
+        Time.timeScale = 1;
     }
     public void GameOver()
     {
