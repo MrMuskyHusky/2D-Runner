@@ -5,16 +5,17 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject prefab1, prefab2, prefab3, prefab4, prefab5;
+    public GameObject powerUp;
 
     public float nextSpawn;
     public float spawnRate = 2f;
+    public float spawnPowerUpRate = 60f;
     public int whatToSpawn;
-
     public bool hasStartSpawning = false;
 
     private void Start()
     {
-
+        
     }
 
     void Update()
@@ -24,8 +25,8 @@ public class Spawner : MonoBehaviour
             hasStartSpawning = true;
             
         }
-
         SpawnObjects();
+        PowerUp();
     }
 
     public void SpawnObjects()
@@ -54,7 +55,16 @@ public class Spawner : MonoBehaviour
                     break;
             }
             nextSpawn = Time.time + spawnRate;
-            spawnRate = Random.Range(0, 4);
+            spawnRate = Random.Range(1, 5);
+        }
+    }
+
+    public void PowerUp()
+    {
+        if (nextSpawn > spawnPowerUpRate+0.75f && hasStartSpawning == true)
+        {
+            Instantiate(powerUp, transform.position, Quaternion.identity);
+            spawnPowerUpRate = Random.Range(20, 35);
         }
     }
 }

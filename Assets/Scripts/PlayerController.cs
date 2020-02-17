@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public bool isJumping = false; // this doesn't need to be public
     private Rigidbody2D _rigidBody2D;
     public Text tutorialText;
+    public GameObject shield;
 
     public Animator anim;
 
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         anim.SetBool("WarmingUp", true);
         _rigidBody2D = GetComponent<Rigidbody2D>();
+       // shield = GetComponent<GameObject>();
     }
     private void Update()
     {
