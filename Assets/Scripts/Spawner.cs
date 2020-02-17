@@ -54,7 +54,7 @@ public class Spawner : MonoBehaviour
                     break;
             }
             nextSpawn = Time.time + spawnRate;
-            spawnRate = Random.Range(1, 4);
+            spawnRate = Random.Range(0, 4);
         }
     }
 }
