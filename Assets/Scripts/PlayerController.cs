@@ -1,23 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public float jumpHeight;
     public bool isJumping = false; // this doesn't need to be public
     private Rigidbody2D _rigidBody2D;
+    public Text tutorialText;
 
-    private void Awake()
+    public Animator anim;
+
+    private void Start()
     {
+        anim = GetComponent<Animator>();
+        anim.SetBool("WarmingUp", true);
         _rigidBody2D = GetComponent<Rigidbody2D>();
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isJumping) // both conditions can be in the same branch
+        if (Input.GetKey(KeyCode.Space) && !isJumping) // both conditions can be in the same branch
         {
             _rigidBody2D.AddForce(Vector2.up * jumpHeight); // you need a reference to the RigidBody2D component
             isJumping = true;
+            tutorialText.gameObject.SetActive(false);
+            anim.SetBool("Running", true);
+            anim.SetBool("WarmingUp", false);
         }
     }
 

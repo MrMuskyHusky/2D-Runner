@@ -9,6 +9,8 @@ public class Score : MonoBehaviour
     public float score;
     public float pointIncreasePerSecond;
 
+    public bool hasStartTimer = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +22,15 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        score += pointIncreasePerSecond * Time.deltaTime;
-        scoreText.text = "Distance: " + Mathf.Round(score);
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            hasStartTimer = true;
+        }
+        if(hasStartTimer == true)
+        {
+            score += pointIncreasePerSecond * Time.deltaTime;
+            scoreText.text = "Distance: " + Mathf.Round(score);
+        }
     }
     void TimerIncreaseTest()
     {

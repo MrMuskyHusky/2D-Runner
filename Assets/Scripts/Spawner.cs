@@ -10,14 +10,27 @@ public class Spawner : MonoBehaviour
     public float spawnRate = 2f;
     public int whatToSpawn;
 
+    public bool hasStartSpawning = false;
+
     private void Start()
     {
-        
+
     }
 
     void Update()
     {
-        if(Time.time > nextSpawn)
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            hasStartSpawning = true;
+            
+        }
+
+        SpawnObjects();
+    }
+
+    public void SpawnObjects()
+    {
+        if (Time.time > nextSpawn && hasStartSpawning == true)
         {
             whatToSpawn = Random.Range(1, 6);
             Debug.Log(whatToSpawn);
