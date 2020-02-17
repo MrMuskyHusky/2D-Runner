@@ -8,8 +8,9 @@ public class Spawner : MonoBehaviour
     public GameObject powerUp;
 
     public float nextSpawn;
+    public float nextSpawnPower;
     public float spawnRate = 2f;
-    public float spawnPowerUpRate = 60f;
+    public float spawnPowerUpRate = 5f;
     public int whatToSpawn;
     public bool hasStartSpawning = false;
 
@@ -23,7 +24,6 @@ public class Spawner : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             hasStartSpawning = true;
-            
         }
         SpawnObjects();
         PowerUp();
@@ -55,16 +55,17 @@ public class Spawner : MonoBehaviour
                     break;
             }
             nextSpawn = Time.time + spawnRate;
-            spawnRate = Random.Range(1, 5);
+            spawnRate = Random.Range(1f, 2f);
         }
     }
 
     public void PowerUp()
     {
-        if (nextSpawn > spawnPowerUpRate+0.75f && hasStartSpawning == true)
+        if (Time.time > nextSpawnPower && hasStartSpawning == true)
         {
             Instantiate(powerUp, transform.position, Quaternion.identity);
-            spawnPowerUpRate = Random.Range(20, 35);
+            nextSpawnPower = spawnPowerUpRate;
+            spawnPowerUpRate = Random.Range(10f, 15f);
         }
     }
 }

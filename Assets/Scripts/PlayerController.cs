@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-        anim.SetBool("WarmingUp", true);
         _rigidBody2D = GetComponent<Rigidbody2D>();
        // shield = GetComponent<GameObject>();
     }
@@ -28,8 +27,8 @@ public class PlayerController : MonoBehaviour
             _rigidBody2D.AddForce(Vector2.up * jumpHeight); // you need a reference to the RigidBody2D component
             isJumping = true;
             tutorialText.gameObject.SetActive(false);
-            anim.SetBool("Running", true);
-            anim.SetBool("WarmingUp", false);
+            anim.SetBool("Jump", true);
+            anim.SetBool("Running", false);
         }
     }
 
@@ -38,6 +37,8 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.tag == "Ground") // GameObject is a type, gameObject is the property
         {
             isJumping = false;
+            anim.SetBool("Running", true);
+            anim.SetBool("Jump", false);
         }
     }
 }
