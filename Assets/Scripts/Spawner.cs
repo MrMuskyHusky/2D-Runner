@@ -7,23 +7,22 @@ public class Spawner : MonoBehaviour
     public GameObject prefab1, prefab2, prefab3, prefab4, prefab5;
     public GameObject powerUp;
 
-    public float nextSpawn;
-    public float nextSpawnPower;
-    public float spawnRate = 2f;
-    public float spawnPowerUpRate = 5f;
+    public float nextSpawn, spawnRate;
+    public float nextSpawnPower, spawnPowerUpRate;
     public int whatToSpawn;
-    public bool hasStartSpawning = false;
+    public bool canSpawn = false;
+    public bool canSpawnPower;
 
-    private void Start()
+    public void Start()
     {
-        
+        spawnPowerUpRate = Random.Range(25, 35);
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            hasStartSpawning = true;
+            canSpawn = true;
         }
         SpawnObjects();
         PowerUp();
@@ -31,7 +30,7 @@ public class Spawner : MonoBehaviour
 
     public void SpawnObjects()
     {
-        if (Time.time > nextSpawn && hasStartSpawning == true)
+        if (Time.time > nextSpawn)
         {
             whatToSpawn = Random.Range(1, 6);
             Debug.Log(whatToSpawn);
@@ -55,17 +54,26 @@ public class Spawner : MonoBehaviour
                     break;
             }
             nextSpawn = Time.time + spawnRate;
-            spawnRate = Random.Range(1f, 2f);
+            spawnRate = Random.Range(1, 4);
         }
     }
 
-    public void PowerUp()
+    void PowerUp()
     {
-        if (Time.time > nextSpawnPower && hasStartSpawning == true)
+        if(canSpawnPower == true)
         {
-            Instantiate(powerUp, transform.position, Quaternion.identity);
-            nextSpawnPower = spawnPowerUpRate;
-            spawnPowerUpRate = Random.Range(10f, 15f);
+            Instantiate(powerUp, this.transform);
+            nextSpawnPower = 0;
+            spawnPowerUpRate = Random.Range(25, 35);
+            canSpawnPower = false;
+        }
+        if(canSpawnPower == false)
+        {
+            nextSpawnPower += Time.deltaTime;
+            if (nextSpawnPower >= spawnPowerUpRate)
+            {
+                canSpawnPower = true;
+            }
         }
     }
 }
