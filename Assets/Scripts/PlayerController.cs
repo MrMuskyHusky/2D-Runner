@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigidBody2D;
     public Text tutorialText;
     public GameObject shield;
+    public float powerTimer;
 
     public Animator anim;
 
@@ -18,7 +19,6 @@ public class PlayerController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         _rigidBody2D = GetComponent<Rigidbody2D>();
-       // shield = GetComponent<GameObject>();
     }
     private void Update()
     {

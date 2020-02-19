@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour
 
     public void SpawnObjects()
     {
-        if (Time.time > nextSpawn)
+        if (Time.time > nextSpawn && canSpawn == true)
         {
             whatToSpawn = Random.Range(1, 6);
             Debug.Log(whatToSpawn);
