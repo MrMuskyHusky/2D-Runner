@@ -18,9 +18,4 @@ public class PowerUp : MonoBehaviour
         obj.shield.SetActive(true);
         Destroy(gameObject);
     }
-
-    void Timer()
-    {
-
-    }
 }

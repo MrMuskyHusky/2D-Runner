@@ -41,4 +41,9 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("Jump", false);
         }
     }
+
+    void Timer()
+    {
+
+    }
 }
