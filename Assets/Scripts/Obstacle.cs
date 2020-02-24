@@ -5,6 +5,7 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     public static float speed = 5;
+    public float rotateSpeed;
     public float secondsToDestroy;
 
     void Start()
@@ -16,6 +17,7 @@ public class Obstacle : MonoBehaviour
     {
         Debug.Log(speed+"");
         transform.Translate(Vector2.left * speed * Time.deltaTime);
+        transform.Rotate(Vector2.right * rotateSpeed);
     }
 
     void IncreaseSpeed()

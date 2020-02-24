@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigidBody2D;
     public Text tutorialText;
     public GameObject shield;
+    public bool isShield;
     public float powerTimer;
 
     public Animator anim;
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         _rigidBody2D = GetComponent<Rigidbody2D>();
+        isShield = false;
     }
     private void Update()
     {
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("Jump", true);
             anim.SetBool("Running", false);
         }
+        Timer();
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -44,6 +47,18 @@ public class PlayerController : MonoBehaviour
 
     void Timer()
     {
-
+        if(isShield == true)
+        {
+            powerTimer -= Time.deltaTime;
+            if(powerTimer <= 0f)
+            {
+                isShield = false;
+                shield.SetActive(false);
+            }
+        }
+        if(isShield == false)
+        {
+            powerTimer = 10f;
+        }
     }
 }

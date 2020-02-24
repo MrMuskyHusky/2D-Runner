@@ -16,6 +16,7 @@ public class PowerUp : MonoBehaviour
     {
         PlayerController obj = player.GetComponent<PlayerController>();
         obj.shield.SetActive(true);
+        obj.isShield = true;
         Destroy(gameObject);
     }
 }

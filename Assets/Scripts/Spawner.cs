@@ -12,10 +12,17 @@ public class Spawner : MonoBehaviour
     public int whatToSpawn;
     public bool canSpawn = false;
     public bool canSpawnPower;
+    public bool isPause;
 
     public void Start()
     {
         spawnPowerUpRate = Random.Range(25, 35);
+        /*if(isPause == true)
+        {
+            Time.timeScale = 0;
+        }*/
+
+        isPause = true;
     }
 
     void Update()
@@ -23,9 +30,13 @@ public class Spawner : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             canSpawn = true;
+            isPause = false;
         }
-        SpawnObjects();
-        PowerUp();
+        if (isPause == false)
+        {
+            SpawnObjects();
+            PowerUp();
+        }
     }
 
     public void SpawnObjects()
