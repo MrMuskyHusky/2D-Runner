@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
+        // If the player touches a gameobject tag as Ground, we want to be able to jump again.
         if (col.gameObject.tag == "Ground") // GameObject is a type, gameObject is the property
         {
             isJumping = false;
@@ -47,17 +48,21 @@ public class PlayerController : MonoBehaviour
 
     void Timer()
     {
+        // If shield is on
         if(isShield == true)
         {
+            // Start decreasing the powerTime float.
             powerTimer -= Time.deltaTime;
             if(powerTimer <= 0f)
             {
+                // If the powerTimer hits 0 or goes under 0, we want the gameObject and the bool to be set to false.
                 isShield = false;
                 shield.SetActive(false);
             }
         }
         if(isShield == false)
         {
+            // if isShield is false, reset the timer back to 10;
             powerTimer = 10f;
         }
     }

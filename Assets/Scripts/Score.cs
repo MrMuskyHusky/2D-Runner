@@ -9,7 +9,7 @@ public class Score : MonoBehaviour
     public float score;
     public float pointIncreasePerSecond;
 
-    public bool hasStartTimer = false;
+    public bool hasStartTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +17,7 @@ public class Score : MonoBehaviour
         scoreText.text = "Distance: " + score;
         pointIncreasePerSecond = 1f;
         InvokeRepeating("TimerIncreaseTest", 1, 1);
+        hasStartTimer = false;
     }
 
     // Update is called once per frame
@@ -34,6 +35,9 @@ public class Score : MonoBehaviour
     }
     void TimerIncreaseTest()
     {
-        pointIncreasePerSecond+=0.25f;
+        if (hasStartTimer == true)
+        {
+            pointIncreasePerSecond += 0.25f;
+        }
     }
 }
