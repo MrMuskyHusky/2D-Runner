@@ -18,9 +18,9 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        anim = GetComponent<Animator>();
-        _rigidBody2D = GetComponent<Rigidbody2D>();
-        isShield = false;
+        anim = GetComponent<Animator>(); // Check if Animator is on the player.
+        _rigidBody2D = GetComponent<Rigidbody2D>(); // Check if RigiBody2D is on the player.
+        isShield = false; // Set isShield on false when you start the game.
     }
     private void Update()
     {

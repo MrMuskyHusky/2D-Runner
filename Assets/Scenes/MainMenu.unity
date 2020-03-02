@@ -1011,7 +1011,7 @@ GameObject:
   - component: {fileID: 1300150713}
   - component: {fileID: 1300150712}
   m_Layer: 5
-  m_Name: Restart
+  m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1495,7 +1495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1799354682}
   m_Layer: 5
-  m_Name: GameOver
+  m_Name: MainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

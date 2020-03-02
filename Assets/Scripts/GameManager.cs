@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
+        // Display game over screen and freeze the game.
         gameOver.SetActive(true);
         Time.timeScale = 0;
     }
